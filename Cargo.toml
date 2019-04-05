@@ -1,6 +1,12 @@
 [package]
-name = "multimap"
+name = "cc-multimap"
 version = "0.1.0"
 authors = ["CodeChain Team <codechain@kodebox.io>"]
+edition = "2018"
+license = "MIT"
+readme = "README.md"
+repository = "http://github.com/CodeChain-io/rust-multimap"
+keywords = ["multimap"]
+description = "Multimap implementation for CodeChain project."
 
 [dependencies]
