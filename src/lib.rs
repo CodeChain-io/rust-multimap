@@ -6,8 +6,7 @@ use std::ops::Deref;
 pub struct MultiMap<K, V>
 where
     K: Ord + Eq + Hash,
-    V: Eq + Hash,
-{
+    V: Eq + Hash, {
     backing: BTreeMap<K, HashSet<V>>,
 }
 
@@ -18,10 +17,7 @@ where
 {
     /// Insert an item into the multimap.
     pub fn insert(&mut self, key: K, value: V) -> bool {
-        self.backing
-            .entry(key)
-            .or_insert_with(Default::default)
-            .insert(value)
+        self.backing.entry(key).or_insert_with(Default::default).insert(value)
     }
 
     /// Remove an item from the multimap.
@@ -31,20 +27,17 @@ where
             let only_one_left = values.len() == 1;
             if !only_one_left {
                 // Operation may be ok: only if value is in values Set.
-                return values.remove(value);
+                return values.remove(value)
             }
             if value
-                != values
-                    .iter()
-                    .next()
-                    .expect("We know there is only one element in collection, tested above; qed")
+                != values.iter().next().expect("We know there is only one element in collection, tested above; qed")
             {
                 // Operation failed: value is not the single item in values Set.
-                return false;
+                return false
             }
         } else {
             // Operation failed: value not found in Map.
-            return false;
+            return false
         }
         // Operation maybe ok: only if value not found in values Set.
         self.backing.remove(key).is_some()
